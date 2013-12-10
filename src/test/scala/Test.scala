@@ -1,3 +1,5 @@
+package jp.co.guru.PostgreSQLAnalyze
+
 import Parse._
 import org.scalatest.FunSuite
 

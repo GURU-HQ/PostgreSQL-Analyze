@@ -1,3 +1,5 @@
+package jp.co.guru.PostgreSQLAnalyze
+
 import com.typesafe.scalalogging.slf4j.Logging
 import scala.Array.canBuildFrom
 

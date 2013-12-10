@@ -1,3 +1,5 @@
+package jp.co.guru.PostgreSQLAnalyze
+
 case class Plan(line: Int, op: String, cost: Cost, actualTime: ActualTime, desc: List[String]) {
   def csv(sum: Plan) = {
     op +: List(cost.csv, actualTime.csv, desc).flatten

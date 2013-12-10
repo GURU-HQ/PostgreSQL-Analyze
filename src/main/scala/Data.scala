@@ -1,3 +1,5 @@
+package jp.co.guru.PostgreSQLAnalyze
+
 object Data {
   val orgFirst = """
 "Limit  (cost=217145.63..217146.53 rows=20 width=484) (actual time=17451.696..17451.826 rows=20 loops=1)"
