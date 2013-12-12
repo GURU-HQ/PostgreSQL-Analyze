@@ -1,7 +1,6 @@
 package jp.co.guru.PostgreSQLAnalyze
 
 import com.typesafe.scalalogging.slf4j.Logging
-import scala.Array.canBuildFrom
 
 object Parse extends Logging {
   type IndexedString = Tuple2[String, Int]
@@ -17,15 +16,14 @@ object Parse extends Logging {
   }
 
   class ResultIterator(s: String) extends Iterator[Plan] {
-    val rawLines = s.split("\r\n").zipWithIndex.filter(_._1.length != 0)
-    val HR = "\"\\s*(.*)\"".r
+    val rawLines = s.split("\r?\n").zipWithIndex.filter(_._1.length != 0)
+    val ValidLine = "\"*\\s*(.*?)\"*".r
     val lines: Array[Either[IndexedString, IndexedString]] = rawLines.map(l => {
       l._1 match {
-        case HR(b) => Right(b, l._2)
+        case ValidLine(b) => Right(b, l._2)
         case x     => Left("Not match line" + l._2 + " " + l._1, l._2)
       }
     })
-    //    lines.foreach(l => println("[" + l + "]"))
 
     // 終了判定の為、先読みが必要（なのでBufferedIterator)
     val source = lines.iterator.buffered
@@ -70,9 +68,5 @@ object Parse extends Logging {
         case Left(x) => println("GN"); source.next; getNext()
       }
     }
-  }
-
-  def getPlans() = {
-    
   }
 }

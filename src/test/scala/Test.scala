@@ -2,11 +2,12 @@ package jp.co.guru.PostgreSQLAnalyze
 
 import Parse._
 import org.scalatest.FunSuite
+import com.typesafe.scalalogging.slf4j.Logging
 
-class StringFunSuite extends FunSuite {
+class StringFunSuite extends FunSuite with Logging {
   test("first test") {
     val plan = new ResultIterator(Data.orgSecond).toList
-//    plan.foreach(p => println(p.excel(plan(0)).mkString("\t")))
+    plan.foreach(p => println(p.excel(plan(0)).mkString("\t")))
   }
 }
 
